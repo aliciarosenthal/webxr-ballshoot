@@ -39,7 +39,7 @@
 			let room;
 
 			let count = 0;
-			const radius = 0.1;
+			const radius = 0.08;
 			let normal = new THREE.Vector3();
 			const relativeVelocity = new THREE.Vector3();
 
@@ -51,7 +51,7 @@
 			function init() {
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0x505050 );
+				scene.background = new THREE.TextureLoader().load( "textures/equirectangular.png" );
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
 				camera.position.set( 0, 1.6, 3 );
@@ -72,10 +72,8 @@
 				const geometry = new THREE.IcosahedronGeometry( radius, 3 );
 
 				for ( let i = 0; i < 200; i ++ ) {
-
-					//const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
-					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0xff0000 } ) );
-
+					
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
 					object.position.x = Math.random() * 4 - 2;
 					object.position.y = Math.random() * 4;
 					object.position.z = Math.random() * 4 - 2;
@@ -212,7 +210,8 @@
 					object.userData.velocity.x = ( Math.random() - 0.5 ) * 3;
 					object.userData.velocity.y = ( Math.random() - 0.5 ) * 3;
 					object.userData.velocity.z = ( Math.random() - 9 );
-					object.scale.set(5,5,5);
+					object.scale.set(3,3,3);
+					object.material.color = 0xff0000;
 					object.userData.velocity.applyQuaternion( controller.quaternion );
 
 					if ( count === room.children.length ) count = 0;
@@ -234,7 +233,7 @@
 				handleController( controller1 );
 				handleController( controller2 );
 
-				//
+				//object.scale.set(3,3,3);
 
 				const delta = clock.getDelta() * 0.8; // slow down simulation
 
@@ -247,7 +246,6 @@
 					object.position.x += object.userData.velocity.x * delta;
 					object.position.y += object.userData.velocity.y * delta;
 					object.position.z += object.userData.velocity.z * delta;
-					//object.scale(3,3,3);
 
 					// keep objects inside room
 
