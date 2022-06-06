@@ -236,7 +236,7 @@
 
 				const delta = clock.getDelta() * 0.8; // slow down simulation
 
-				const range = 100 - radius;
+				const range = 3 - radius;
 
 				for ( let i = 0; i < room.children.length; i ++ ) {
 
@@ -245,6 +245,7 @@
 					object.position.x += object.userData.velocity.x * delta;
 					object.position.y += object.userData.velocity.y * delta;
 					object.position.z += object.userData.velocity.z * delta;
+					object.scale(3,3,3);
 
 					// keep objects inside room
 
