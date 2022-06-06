@@ -73,7 +73,8 @@
 
 				for ( let i = 0; i < 200; i ++ ) {
 
-					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+					//const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+					const object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
 
 					object.position.x = Math.random() * 4 - 2;
 					object.position.y = Math.random() * 4;
@@ -245,7 +246,7 @@
 					object.position.x += object.userData.velocity.x * delta;
 					object.position.y += object.userData.velocity.y * delta;
 					object.position.z += object.userData.velocity.z * delta;
-					object.scale(3,3,3);
+					//object.scale(3,3,3);
 
 					// keep objects inside room
 
